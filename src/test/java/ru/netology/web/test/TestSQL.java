@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class TestSQL {
     @AfterAll
-    static void teardown() {
+    public static void teardown() {
         SQLHelper.cleanDatabase();
     }
 
@@ -31,7 +31,7 @@ public class TestSQL {
     }
 
     @Test
-    public void userNotValid() {
+    void userNotValid() {
         var loginPageV1 = new LoginPageV1();
         var authInfo = DataHelper.getRandomUser();
         var verificationPage = LoginPageV1.validLogin(authInfo);
@@ -39,7 +39,7 @@ public class TestSQL {
     }
 
     @Test
-    public void userBlocking() {
+    void userBlocking() {
         var loginPageV1 = new LoginPageV1();
         var authInfo = DataHelper.getAuthInfo();
         LoginPageV1.notValidPassword(authInfo);
