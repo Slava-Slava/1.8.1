@@ -19,6 +19,7 @@ public class TestSQL {
     public void urlOpen() {
         open("http://localhost:9999");
     }
+
     @Test
     void userValid() {
         var authInfo = DataHelper.getAuthInfo();
@@ -41,10 +42,20 @@ public class TestSQL {
     public void userBlocking() {
         var loginPageV1 = new LoginPageV1();
         var authInfo = DataHelper.getAuthInfo();
-       // var verificationPage = LoginPageV1.notValidPassword(authInfo);
         LoginPageV1.notValidPassword(authInfo);
         LoginPageV1.notValidPassword(authInfo);
         LoginPageV1.notValidPassword(authInfo);
+        loginPageV1.setErrorNotification("Ошибка");
+    }
+
+    @Test
+    void errorCode() {
+        var loginPageV1 = new LoginPageV1();
+        var authInfo = DataHelper.getAuthInfo();
+        var verificationPage = LoginPageV1.validLogin(authInfo);
+        verificationPage.VerificationPage();
+        var verificationCode = DataHelper.generationRandomVerificationCode();
+        var dashboardPage = verificationPage.validVerify(verificationCode);
         loginPageV1.setErrorNotification("Ошибка");
     }
 }
