@@ -17,11 +17,10 @@ public class TestSQL {
 
     @BeforeEach
     public void urlOpen() {
-        open("http://localhost:9999", LoginPageV1.class);
+        open("http://localhost:9999");
     }
-
     @Test
-    public void userValid() {
+    void userValid() {
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = LoginPageV1.validLogin(authInfo);
         verificationPage.VerificationPage();
@@ -42,7 +41,7 @@ public class TestSQL {
     public void userBlocking() {
         var loginPageV1 = new LoginPageV1();
         var authInfo = DataHelper.getAuthInfo();
-        var verificationPage = LoginPageV1.notValidPassword(authInfo);
+       // var verificationPage = LoginPageV1.notValidPassword(authInfo);
         LoginPageV1.notValidPassword(authInfo);
         LoginPageV1.notValidPassword(authInfo);
         LoginPageV1.notValidPassword(authInfo);
